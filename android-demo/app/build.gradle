@@ -1,0 +1,53 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+buildscript {
+    ext {
+        appcompat_version = '27.0.2'
+        anko_version='0.10.4'
+    }
+}
+
+android {
+    buildToolsVersion '27.0.0'
+    compileSdkVersion 27
+    defaultConfig {
+        applicationId "clipper.androiddemo"
+        minSdkVersion 19
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+repositories {
+    maven { url "https://maven.google.com" }
+    maven { url "https://jitpack.io" }
+    jcenter()
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    compile "com.android.support:appcompat-v7:$appcompat_version"
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    // Anko Commons
+    compile "org.jetbrains.anko:anko-commons:$anko_version"
+
+    // Anko Layouts
+    compile "org.jetbrains.anko:anko-sdk25:$anko_version" // sdk15, sdk19, sdk21, sdk23 are also available
+    compile "org.jetbrains.anko:anko-appcompat-v7:$anko_version"
+
+    // Clipper
+    compile 'com.github.alexej520:clipper-kotlin:1.0'
+}
